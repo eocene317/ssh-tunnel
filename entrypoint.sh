@@ -47,6 +47,16 @@ echo "本地 SOCKS 端口: $LOCAL_SOCKS_PORT"
 echo "私钥: $SSH_KEY_DEST"
 
 # 使用 autossh 建立稳定隧道
+echo exec autossh -M 0 -N \
+    -o "ServerAliveInterval $REMOTE_HOST_ALIVE_INTERVAL" \
+    -o "ServerAliveCountMax 3" \
+    -o "StrictHostKeyChecking no" \
+    -o "ExitOnForwardFailure yes" \
+    -i "$SSH_KEY_DEST" \
+    -D "0.0.0.0:$LOCAL_SOCKS_PORT" \
+    -p "$SSH_PORT" \
+    "$SSH_TARGET"
+
 exec autossh -M 0 -N \
     -o "ServerAliveInterval $REMOTE_HOST_ALIVE_INTERVAL" \
     -o "ServerAliveCountMax 3" \
