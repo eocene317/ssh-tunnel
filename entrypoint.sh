@@ -21,10 +21,7 @@ if [ ! -f "$SSH_KEY" ]; then
 fi
 
 # 设置私钥权限
-if ! chmod 600 "$SSH_KEY"; then
-    echo "错误：无法设置 $SSH_KEY 的权限为 600"
-    exit 1
-fi
+chmod 600 "$SSH_KEY" || echo "警告：无法修改 $SSH_KEY 权限，继续运行..."
 
 # 构建 SSH 目标
 SSH_TARGET="${SSH_USER}@${SSH_HOST}"
