@@ -1,5 +1,5 @@
 # 使用轻量级 Alpine 镜像
-FROM alpine:latest
+FROM alpine:3.19
 
 # 维护者信息（可选）
 LABEL maintainer="zerowang317@gmail.com"
